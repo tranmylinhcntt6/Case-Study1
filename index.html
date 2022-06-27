@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- bat dau game -->
+    <div id="start-game">
+        <h1>EASY MATH</h1>
+        <button id="btn-start-game">START</button>
+    </div>
+    <!-- choi game -->
+    <div id="game">
+        <div class="control">
+            <h1>EASY MATH</h1>
+            <div class="time-game">
+                <img src="https://img.icons8.com/dotty/80/26e07f/love-time.png" />
+                <p id="time">00:00s</p>
+            </div>
+            <div id="score-game">0</div>
+            <div id="level-game">0</div>
+        </div>
+        <div class="game-container">
+            <div class="math-game">
+                <div id = "calculation"></div>
+                <div id="result"></div>
+                <div id="clickArea">
+                    <button id ="true" onclick="check(this.id)"><i class="fa fa-check"></i></button>
+                    <button id ="false" onclick="check(this.id)"><i class="fa fa-close"></i></button>
+                </div>
+            </div>
+        </div>
+    <script src="./main.js"></script>
+</body>
+</html>
