@@ -1,3 +1,4 @@
+// import swal from 'sweetalert';
 // truy cap vao cac phan tu DOM
 const StartGame = document.querySelector('#start-game');
 const game = document.querySelector('#game');
@@ -94,6 +95,7 @@ function check(btn){
             }
         break;
     }
+    // console.log("check");
     check ? nextLevel() : gameOver();
 }
 
@@ -107,10 +109,19 @@ function nextLevel(){
 }
 
 function gameOver(){
-    document.getElementById("true").style.display = "none";
-    document.getElementById("false").style.display = "none";
-    alert("Game Over. Your score is "+ score + ". Replay?");
-    location.reload();
+    // console.log("Game Over");
+    // document.getElementById("true").style.display = "none";
+    // document.getElementById("false").style.display = "none";
+    game.style.display = "none";
+    document.getElementById("end-game").style.display = "flex";
+    document.getElementById("write-score").innerHTML = "Your score is "+ score;
+    
+//   alert("Game Over. Your score is "+ score + ". Replay?");
+    // document.getElementById("false").onclick = function(){
+    //     swal('Game Over. Your score is ' + score + 'Replay?');
+    // }
+
+//    location.reload();
 }
 
 function countDown() {
@@ -133,6 +144,8 @@ function convertTime(time){
 }
 function startGame() {
     time = fullTime;
+    score = 0;
+    level = 1;
     document.getElementById("score-game").innerHTML = "Score: "+score;
     document.getElementById("level-game").innerHTML = "Level: "+level;
     generateCalculation();
@@ -145,5 +158,15 @@ btnStartGame.addEventListener("click", function() {
     StartGame.style.display = "none";
     game.style.display = "flex";
 
+    startGame();
+});
+// document.getElementById("btn-play-again").onclick = function() {
+//     document.getElementById("end-game").style.display = "none";
+//     game.style.display = "flex";
+//     startGame();
+// };
+endGameEl.addEventListener("click", function() {
+    document.getElementById("end-game").style.display = "none";
+    game.style.display = "flex";
     startGame();
 });
