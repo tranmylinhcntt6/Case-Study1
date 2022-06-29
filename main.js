@@ -1,4 +1,4 @@
-// import swal from 'sweetalert';
+
 // truy cap vao cac phan tu DOM
 const StartGame = document.querySelector('#start-game');
 const game = document.querySelector('#game');
@@ -109,19 +109,12 @@ function nextLevel(){
 }
 
 function gameOver(){
-    // console.log("Game Over");
-    // document.getElementById("true").style.display = "none";
-    // document.getElementById("false").style.display = "none";
+   
     game.style.display = "none";
     document.getElementById("end-game").style.display = "flex";
     document.getElementById("write-score").innerHTML = "Your score is "+ score;
     
-//   alert("Game Over. Your score is "+ score + ". Replay?");
-    // document.getElementById("false").onclick = function(){
-    //     swal('Game Over. Your score is ' + score + 'Replay?');
-    // }
 
-//    location.reload();
 }
 
 function countDown() {
@@ -160,11 +153,7 @@ btnStartGame.addEventListener("click", function() {
 
     startGame();
 });
-// document.getElementById("btn-play-again").onclick = function() {
-//     document.getElementById("end-game").style.display = "none";
-//     game.style.display = "flex";
-//     startGame();
-// };
+
 endGameEl.addEventListener("click", function() {
     document.getElementById("end-game").style.display = "none";
     game.style.display = "flex";
