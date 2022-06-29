@@ -6,7 +6,7 @@ const btnStartGame = document.querySelector('#btn-start-game');
 const btnPlayAgain = document.querySelector('#btn-play-again');
 const endGameEl = document.querySelector('#end-game');
 const timeEl = document.querySelector('#time'); 
-const memoryGame = document.querySelector('.math-game');
+// const memoryGame = document.querySelector('.math-game');
 // khai bao bien
 let score = 0;
 let level = 1;
@@ -21,16 +21,20 @@ class RandomOperator {
         this.mul = "*";
     //    this.div = "/";
     }
-    getAdd(){
-        return this.add;
+    // getAdd(){
+    //     return this.add;
+    // }
+    // getSub(){
+    //     return this.sub;
+    // }
+    // getMul(){
+    //     return this.mul;
+    // }
+    getRandomOperator(){
+        let operators = [this.add, this.sub, this.mul];
+        let ran = Math.floor(Math.random() * operators.length);
+        return operators[ran];
     }
-    getSub(){
-        return this.sub;
-    }
-    getMul(){
-        return this.mul;
-    }
-
 }
 
 class RandomNumber {
@@ -45,19 +49,19 @@ class RandomNumber {
 
 let randomOperator = new RandomOperator();
 
-function getRandomOperator(){
-    let operators = [randomOperator.getAdd(), randomOperator.getSub(), randomOperator.getMul()];
-    let ran = Math.floor(Math.random() * operators.length);
-    return operators[ran];
-}
+// function getRandomOperator(){
+//     let operators = [randomOperator.getAdd(), randomOperator.getSub(), randomOperator.getMul()];
+//     let ran = Math.floor(Math.random() * operators.length);
+//     return operators[ran];
+// }
 
 function generateCalculation(){
     let number1 = new RandomNumber(1 * level, 5 * level);
     let number2 = new RandomNumber(1 * level, 5 * level);
-    let op = getRandomOperator();
+    let op = randomOperator.getRandomOperator();
     let cal = number1.getRandomNumber() + " " + op + " " + number2.getRandomNumber();
     if(level >= 5){
-        cal = number1.getRandomNumber() + " " + op + " " + number2.getRandomNumber() + " " + getRandomOperator() + " " +  Math.floor(Math.random() * 100);
+        cal = number1.getRandomNumber() + " " + op + " " + number2.getRandomNumber() + " " + randomOperator.getRandomOperator() + " " +  Math.floor(Math.random() * 100);
     }
     document.getElementById("calculation").innerHTML = cal;
     document.getElementById("result").innerHTML = getRandomResult();
@@ -109,12 +113,19 @@ function nextLevel(){
 }
 
 function gameOver(){
-   
+    // console.log("Game Over");
+    // document.getElementById("true").style.display = "none";
+    // document.getElementById("false").style.display = "none";
     game.style.display = "none";
     document.getElementById("end-game").style.display = "flex";
     document.getElementById("write-score").innerHTML = "Your score is "+ score;
     
+//   alert("Game Over. Your score is "+ score + ". Replay?");
+    // document.getElementById("false").onclick = function(){
+    //     swal('Game Over. Your score is ' + score + 'Replay?');
+    // }
 
+//    location.reload();
 }
 
 function countDown() {
