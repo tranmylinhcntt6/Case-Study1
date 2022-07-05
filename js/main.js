@@ -5,50 +5,24 @@ const game = document.querySelector('#game');
 const btnStartGame = document.querySelector('#btn-start-game');
 const btnPlayAgain = document.querySelector('#btn-play-again');
 const endGameEl = document.querySelector('#end-game');
-const timeEl = document.querySelector('#time'); 
+const timeEl = document.querySelector('#time');
 // khai bao bien
 let score = 0;
 let level = 1;
-let time = 11; // thoi gian hien tai
-let fullTime = 11; // thoi gian cho phep toan
-let widthTime = 0; // chieu dai thanh hien thi thoi gian
-
-class RandomOperator {
-    constructor(add, sub, mul){
-        this.add = "+";
-        this.sub = "-";
-        this.mul = "*";
- 
-    }
-    
-    getRandomOperator(){
-        let operators = [this.add, this.sub, this.mul];
-        let ran = Math.floor(Math.random() * operators.length);
-        return operators[ran];
-    }
-}
-
-class RandomNumber {
-    constructor(min,max){
-        this.min = min;
-        this.max = max;
-    }
-    getRandomNumber(){
-        return Math.floor(Math.random() * (this.max - this.min) + this.min);
-    }
-}
+let time = 11; 
+let fullTime = 11; 
 
 let randomOperator = new RandomOperator();
-
+let number1 = new RandomNumber(1 * level, 5 * level);
+let number2 = new RandomNumber(1 * level, 5 * level);
 
 
 function generateCalculation(){
-    let number1 = new RandomNumber(1 * level, 5 * level);
-    let number2 = new RandomNumber(1 * level, 5 * level);
     let op = randomOperator.getRandomOperator();
     let cal = number1.getRandomNumber() + " " + op + " " + number2.getRandomNumber();
     if(level >= 5){
-        cal = number1.getRandomNumber() + " " + op + " " + number2.getRandomNumber() + " " + randomOperator.getRandomOperator() + " " +  Math.floor(Math.random() * 100);
+        cal = number1.getRandomNumber() + " " + op + " " + number2.getRandomNumber()
+         + " " + randomOperator.getRandomOperator() + " " +  Math.floor(Math.random() * 100);
     }
     document.getElementById("calculation").innerHTML = cal;
     document.getElementById("result").innerHTML = getRandomResult();
@@ -86,7 +60,6 @@ function check(btn){
             }
         break;
     }
-    // console.log("check");
     check ? nextLevel() : gameOver();
 }
 
@@ -104,7 +77,6 @@ function gameOver(){
     game.style.display = "none";
     document.getElementById("end-game").style.display = "flex";
     document.getElementById("write-score").innerHTML = "Your score is "+ score;
-    
 
 }
 
@@ -118,14 +90,17 @@ function countDown() {
         }
     },1000);
 }
+
 function updateTime(){
     timeEl.innerText = convertTime(time);
 }
+
 function convertTime(time){
     let minute = `0${Math.floor(time / 60)}`.slice(-2);
     let second = `0${time % 60}`.slice(-2);
     return `${minute}:${second}s`;
 }
+
 function startGame() {
     time = fullTime;
     score = 0;
