@@ -6,6 +6,11 @@ const btnStartGame = document.querySelector('#btn-start-game');
 const btnPlayAgain = document.querySelector('#btn-play-again');
 const endGameEl = document.querySelector('#end-game');
 const timeEl = document.querySelector('#time');
+const Calculation = document.querySelector('#calculation');
+const Result = document.querySelector('#result');
+const scoreGame = document.querySelector('#score-game');
+const levelGame = document.querySelector('#level-game');
+const writeGame = document.querySelector('#write-score');
 // khai bao bien
 let score = 0;
 let level = 1;
@@ -24,8 +29,9 @@ function generateCalculation(){
         cal = number1.getRandomNumber() + " " + op + " " + number2.getRandomNumber()
          + " " + randomOperator.getRandomOperator() + " " +  Math.floor(Math.random() * 100);
     }
-    document.getElementById("calculation").innerHTML = cal;
-    document.getElementById("result").innerHTML = getRandomResult();
+  
+    Calculation.innerHTML = cal;
+    Result.innerHTML = getRandomResult();
 }
 
 function getRandomResult() {
@@ -34,7 +40,7 @@ function getRandomResult() {
 }
 
 function getResult() {
-    let cal = document.getElementById("calculation").innerHTML;
+    let cal = Calculation.innerHTML;
     return eval(cal);
 }
 
@@ -46,7 +52,7 @@ function getFakedResult() {
 // bat su kien cho button
 
 function check(btn){
-    let result = +document.getElementById('result').innerHTML;
+    let result = +Result.innerHTML;
     let check = false;
     switch (btn){
         case "true":
@@ -67,16 +73,16 @@ function nextLevel(){
     score++;
     level++;
     time = fullTime;
-    document.getElementById("score-game").innerHTML = "Score: " + score;
-    document.getElementById("level-game").innerHTML = "Level: " + level;
+    scoreGame.innerHTML = "Score: " + score;
+    levelGame.innerHTML = "Level: " + level;
     generateCalculation();
 }
 
 function gameOver(){
    
     game.style.display = "none";
-    document.getElementById("end-game").style.display = "flex";
-    document.getElementById("write-score").innerHTML = "Your score is "+ score;
+    endGameEl.style.display = "flex";
+    writeGame.innerHTML = "Your score is "+ score;
 
 }
 
@@ -105,8 +111,8 @@ function startGame() {
     time = fullTime;
     score = 0;
     level = 1;
-    document.getElementById("score-game").innerHTML = "Score: "+score;
-    document.getElementById("level-game").innerHTML = "Level: "+level;
+    scoreGame.innerHTML = "Score: "+score;
+    levelGame.innerHTML = "Level: "+level;
     generateCalculation();
     countDown();
 }
@@ -121,7 +127,7 @@ btnStartGame.addEventListener("click", function() {
 });
 
 endGameEl.addEventListener("click", function() {
-    document.getElementById("end-game").style.display = "none";
+    endGameEl.style.display = "none";
     game.style.display = "flex";
     startGame();
 });
